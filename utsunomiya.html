@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みやのすだく</title>
+    <!-- tailwindcss読み込み -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- font awsome読み込み -->
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="border-b-2 ">
+        <h1 class="text-center m-2 text-3xl font-bold mb-3 mx-10 ">みやのすだく</h1>
+    </header>
+    <main>
+        <article class="border-2 border-blue-200 mx-10 my-10 px-5 py-5">
+            <h2 class="text-center m-2 text-lg font-bold  ">天気予報</h2>
+            <div class="flex flex-row flex-row-reverse justify-center" id="weatherForecast">
+
+            </div>
+            <div>
+                <h3 class="text-center text-xl mt-3">気象庁より</h3>
+                <p class="" id="forecastDetails"></p>
+            </div>
+        </article>
+
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold">数時間後の降水量予報</h2>
+
+        </article>
+
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold ">災害情報</h2>
+
+
+        </article>
+
+        <article>
+
+            <h2 class="text-center m-2 text-lg font-bold ">外気</h2>
+            <!--実測値ここから -->
+            <div class="info flex  mx-auto justify-center flex-wrap">
+
+                <div class="rounded flex justify-center items-center m-4">
+                    <div class="rounded bg-white shadow-md  p-6 flex flex-col justify-around">
+                        <div>
+                            <p class="text-blue-500">最低気温</p>
+                        </div>
+                        <div>
+
+                            <p class="font-bold text-lg" id="minTempValue"></p>
+                        </div>
+                        <div>
+
+                            <p id="minTempTime"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded flex justify-center items-center m-4">
+                    <div class="rounded bg-white shadow-md  p-6 flex flex-col justify-around">
+                        <div>
+                            <p class="text-red-500">最高気温</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg" id="maxTempValue"></p>
+                        </div>
+                        <div>
+                            <p id="maxTempTime"></p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <!--実測値ここまで -->
+        </article>
+
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold ">宇都宮市Twitter</h2>
+
+
+        </article>
+
+
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold">ISSの通過情報</h2>
+
+        </article>
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold">列車運行情報</h2>
+
+        </article>
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold">COVID19</h2>
+
+        </article>
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold ">ニュース</h2>
+            <div class="flex" id="jpNews">
+
+            </div>
+        </article>
+        <article>
+            <h2 class="text-center m-2 text-lg font-bold ">宇都宮に関わるニュース</h2>
+            <div class="flex" id="utsunomiyaNews">
+
+            </div>
+        </article>
+
+    </main>
+    <footer class="border-t-2  text-center mt-8 mb-8">
+        <p>copyright usuyuki2020</p>
+    </footer>
+
+    <script src="utsunomiya.js"></script>
+
+</body>
+
+</html>

@@ -3,7 +3,7 @@ const latitude = 36.54971; //緯度
 console.log("start");
 let i = 0;
 function allDo() {
-  if (i != 0) {
+  if (i == 0) {
     console.log("clicked");
     getMeteorologicalAgency();
     getTemp();

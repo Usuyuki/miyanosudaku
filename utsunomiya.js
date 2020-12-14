@@ -1,12 +1,16 @@
 const longitude = 139.92874; //経度
 const latitude = 36.54971; //緯度
 console.log("start");
+let i = 0;
 function allDo() {
-  console.log("clicked");
-  getMeteorologicalAgency();
-  getTemp();
-  getYahooWeather();
-  getTrainDelay();
+  if (i != 0) {
+    console.log("clicked");
+    getMeteorologicalAgency();
+    getTemp();
+    getYahooWeather();
+    getTrainDelay();
+    i++;
+  }
 }
 //列車遅延
 function getTrainDelay() {
@@ -28,7 +32,11 @@ function getMeteorologicalAgency() {
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);
-      forecastDetails.innerHTML = data.description.text;
+      forecastDetails.innerHTML =
+        '<h3 class="text-center text-lg   mt-3 mb-1">宇都宮地方気象台より</h3>' +
+        '<p class="mb-2">' +
+        data.description.text +
+        "</p>";
 
       let element = document.getElementById("weatherForecast");
       let fragment = new DocumentFragment();

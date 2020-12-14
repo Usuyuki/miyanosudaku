@@ -67,10 +67,14 @@
 
                 </div>
                 <div>
-                    <h3 class="text-center text-lg   mt-3 ">宇都宮地方気象台より</h3>
-                    <p class="" id="forecastDetails"></p>
+
+                    <span class="" id="forecastDetails"></span>
                 </div>
-                <p class="text-center text-sm text-gray-600 mt-5">Source:気象庁</p>
+
+                <p class="text-center text-sm text-gray-600">Source:気象庁</p>
+                <p class="text-center text-sm text-gray-600 "><a href="https://weather.tsukumijima.net/API"
+                        target="_blank">API : (C) 天気予報 API (livedoor 天気互換)
+                    </a></p>
             </article>
 
             <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
@@ -80,6 +84,10 @@
 
                 </div>
                 <p class="text-center text-sm text-gray-600">Source:Yahoo!天気</p>
+                <p class="text-center text-sm text-gray-600"><a href="https://developer.yahoo.co.jp/about"
+                        target="_blank">API : Web
+                        Services
+                        by Yahoo! JAPAN</a></p>
             </article>
 
 
@@ -124,7 +132,10 @@
                 </div>
                 <!--実測値ここまで -->
             </article>
+            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
+                <h2 class="text-center m-2 text-lg font-bold">日の出日の入り</h2>
 
+            </article>
             <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
                 <h2 class="text-center m-2 text-lg font-bold">COVID19</h2>
 
@@ -157,12 +168,6 @@
             </div>
 
 
-            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
-                <h2 class="text-center m-2 text-lg font-bold ">宇都宮市Twitter</h2>
-
-
-            </article>
-
 
             <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
                 <h2 class="text-center m-2 text-lg font-bold">ISSの通過情報</h2>
@@ -181,6 +186,24 @@
                     <div class="flex" id="utsunomiyaNews">
 
                     </div>
+                </article>
+
+            </div>
+
+
+            <h2 class="text-center m-2 text-lg font-bold ">Twitter</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <article class=" border-2 border-red-800 ml-10 mr-10 md:mr-4 my-10 px-5 py-5 ">
+                    <h2 class="text-center m-2 text-lg font-bold ">宇都宮市</h2>
+                    <a class="twitter-timeline" data-lang="en" data-height="600" data-theme="light"
+                        href="https://twitter.com/city_utsunomiya?ref_src=twsrc%5Etfw">Tweets by city_utsunomiya</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </article>
+                <article class=" border-2 border-red-800 ml-10 md:ml-4 mr-10 my-10 px-5 py-5">
+                    <h2 class="text-center m-2 text-lg font-bold ">宇都宮大学</h2>
+                    <a class="twitter-timeline" data-lang="en" data-height="600" data-theme="light"
+                        href="https://twitter.com/uukouhou?ref_src=twsrc%5Etfw">Tweets by uukouhou</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </article>
 
             </div>

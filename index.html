@@ -54,42 +54,38 @@
         </header>
         <main>
             <div class="mx-auto text-center">
-                <button onclick="allDo()" class=" border-red-200 border-2 bg-white hover:border-blue-500 text-gray-600 mx-30 py-3 rounded select-none
+                <button onclick="allDo()" class="px-3 border-blue-800 border-2 bg-white hover:bg-blue-800 hover:text-white text-gray-600 mx-30 py-3 rounded select-none
                 mx-auto text-center font-bold text-lg ">
 
 
-                    <p class="">全部まとめて取得(少し重いかも)</p>
+                    全部まとめて取得(少し重いかも)
                 </button>
             </div>
-            <article class="border-2 border-blue-200 mx-10 my-10 px-5 py-5">
+            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
                 <h2 class="text-center m-2 text-lg font-bold  ">天気予報</h2>
                 <div class="flex flex-row flex-row-reverse justify-center" id="weatherForecast">
 
                 </div>
                 <div>
-                    <h3 class="text-center text-xl mt-3 ">気象庁より</h3>
+                    <h3 class="text-center text-lg   mt-3 ">宇都宮地方気象台より</h3>
                     <p class="" id="forecastDetails"></p>
                 </div>
+                <p class="text-center text-sm text-gray-600 mt-5">Source:気象庁</p>
             </article>
 
-            <article class="border-2 border-blue-200 mx-10 my-10 px-5 py-5">
-                <h2 class="text-center m-2 text-lg font-bold">予想降水量</h2>
-                <div class="rounded flex justify-center items-center m-4" id="innerYahooWeather">
+            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
+                <h2 class="text-center m-2 text-lg font-bold">直近の予想降水量</h2>
+                <div class="rounded flex justify-center items-center m-4 flex-wrap" id="innerYahooWeather">
 
 
                 </div>
                 <p class="text-center text-sm text-gray-600">Source:Yahoo!天気</p>
             </article>
 
-            <article>
-                <h2 class="text-center m-2 text-lg font-bold ">災害情報</h2>
 
+            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
 
-            </article>
-
-            <article>
-
-                <h2 class="text-center m-2 text-lg font-bold ">外気</h2>
+                <h2 class="text-center m-2 text-lg font-bold ">本日の気温実績</h2>
                 <!--実測値ここから -->
                 <div class="info flex  mx-auto justify-center flex-wrap">
 
@@ -129,37 +125,65 @@
                 <!--実測値ここまで -->
             </article>
 
-            <article>
+            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
+                <h2 class="text-center m-2 text-lg font-bold">COVID19</h2>
+
+            </article>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <article class=" border-2 border-red-800 ml-10 mr-10 md:mr-4 my-10 px-5 py-5 ">
+
+
+
+                    <h2 class="text-center m-2 text-lg font-bold ">災害情報</h2>
+
+
+                </article>
+                <article class=" border-2 border-red-800 ml-10 md:ml-4 mr-10 my-10 px-5 py-5">
+
+
+                    <h2 class="text-center m-2 text-lg font-bold">列車運行情報</h2>
+                    <div class="mx-auto text-center">
+                        <p>JR宇都宮線:<span id="JU"></span></p>
+                        <p>JR日光線:<span id="JN"></span></p>
+                        <p>JR烏山線:<span id="JK"></span></p>
+                        <p>東北新幹線:<span id="TohokuBullet"></span></p>
+                        <p>東武宇都宮線:<span id="TobuU"></span></p>
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
                 <h2 class="text-center m-2 text-lg font-bold ">宇都宮市Twitter</h2>
 
 
             </article>
 
 
-            <article>
+            <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
                 <h2 class="text-center m-2 text-lg font-bold">ISSの通過情報</h2>
 
             </article>
-            <article>
-                <h2 class="text-center m-2 text-lg font-bold">列車運行情報</h2>
 
-            </article>
-            <article>
-                <h2 class="text-center m-2 text-lg font-bold">COVID19</h2>
 
-            </article>
-            <article>
-                <h2 class="text-center m-2 text-lg font-bold ">ニュース</h2>
-                <div class="flex" id="jpNews">
+            <h2 class="text-center m-2 text-lg font-bold ">ニュース</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <article class=" border-2 border-red-800 ml-10 mr-10 md:mr-4 my-10 px-5 py-5 ">
+                    <h2 class="text-center m-2 text-lg font-bold ">全国</h2>
+                    <div class="flex" id="jpNews"></div>
+                </article>
+                <article class=" border-2 border-red-800 ml-10 md:ml-4 mr-10 my-10 px-5 py-5">
+                    <h2 class="text-center m-2 text-lg font-bold ">宇都宮</h2>
+                    <div class="flex" id="utsunomiyaNews">
 
-                </div>
-            </article>
-            <article>
-                <h2 class="text-center m-2 text-lg font-bold ">宇都宮に関わるニュース</h2>
-                <div class="flex" id="utsunomiyaNews">
+                    </div>
+                </article>
 
-                </div>
-            </article>
+            </div>
 
         </main>
         <footer class="border-t-2  text-center mt-8 mb-8">

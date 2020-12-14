@@ -6,6 +6,19 @@ function allDo() {
   getMeteorologicalAgency();
   getTemp();
   getYahooWeather();
+  getTrainDelay();
+}
+//列車遅延
+function getTrainDelay() {
+  const url = "https://tetsudo.rti-giken.jp/free/delay.json";
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      //JU JN NK TohokuBullet TobuU
+
+      JU.innerHTML = "test";
+    });
 }
 
 //気象庁天気
@@ -14,17 +27,26 @@ function getMeteorologicalAgency() {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      // console.log(data);
       forecastDetails.innerHTML = data.description.text;
 
       let element = document.getElementById("weatherForecast");
       let fragment = new DocumentFragment();
 
       for (let i = 0; i < 3; i++) {
-        weatherForecastDate = data.forecasts[i].dateLabel + "の予想天気";
-        weatherForecastIcon =
+        let weatherForecastDate = data.forecasts[i].dateLabel + "の予想天気";
+        let weatherForecastIcon =
           "<img class='text-center' src='" + data.forecasts[i].image.url + "'>";
-        weatherForecast = data.forecasts[i].image.title;
-
+        let weatherForecast = data.forecasts[i].image.title;
+        //当日の最高最低気温はnullなので三項演算子で処理！！
+        let weatherTempMin =
+          data.forecasts[i].temperature.min == null
+            ? "--"
+            : data.forecasts[i].temperature.min.celsius;
+        let weatherTempMax =
+          data.forecasts[i].temperature.max == null
+            ? "--"
+            : data.forecasts[i].temperature.max.celsius;
         let text =
           '          <article class="max-w-xs rounded overflow-hidden shadow-lg my-2 mr-5 bg-white">                    <p class="text-grey-darker text-base text-center mx-2 mt-3" >' +
           weatherForecastDate +
@@ -32,7 +54,11 @@ function getMeteorologicalAgency() {
           weatherForecastIcon +
           '                        </div>                        <p class="text-center font-bold text-3xl mb-2" >' +
           weatherForecast +
-          "</p>                                           </div>                </article>";
+          '</p><div class="flex justify-around"><p class="text-sm text-blue-500">' +
+          weatherTempMin +
+          '度</p><p class="text-sm text-red-500">' +
+          weatherTempMax +
+          "度</p></div>                                          </div>                </article>";
 
         fragment.append(element.insertAdjacentHTML("afterbegin", text));
       }
@@ -64,7 +90,7 @@ function getYahooWeather() {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       let element = document.getElementById("innerYahooWeather");
       let fragment = new DocumentFragment();
       for (let i = 6; i > -1; i--) {

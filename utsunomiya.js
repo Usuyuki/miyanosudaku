@@ -1,6 +1,14 @@
-getMeteorologicalAgency();
-getTemp();
+const longitude = 139.92874; //経度
+const latitude = 36.54971; //緯度
+console.log("start");
+function allDo() {
+  console.log("clicked");
+  getMeteorologicalAgency();
+  getTemp();
+  getYahooWeather();
+}
 
+//気象庁天気
 function getMeteorologicalAgency() {
   const url = "https://weather.tsukumijima.net/api/forecast/city/090010";
   fetch(url)
@@ -8,17 +16,17 @@ function getMeteorologicalAgency() {
     .then((data) => {
       forecastDetails.innerHTML = data.description.text;
 
-      var element = document.getElementById("weatherForecast");
-      var fragment = new DocumentFragment();
+      let element = document.getElementById("weatherForecast");
+      let fragment = new DocumentFragment();
 
-      for (var i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         weatherForecastDate = data.forecasts[i].dateLabel + "の予想天気";
         weatherForecastIcon =
           "<img class='text-center' src='" + data.forecasts[i].image.url + "'>";
         weatherForecast = data.forecasts[i].image.title;
 
-        var text =
-          '          <article class="max-w-xs rounded overflow-hidden shadow-lg my-2 mr-5">                    <p class="text-grey-darker text-base text-center mx-2 mt-3" >' +
+        let text =
+          '          <article class="max-w-xs rounded overflow-hidden shadow-lg my-2 mr-5 bg-white">                    <p class="text-grey-darker text-base text-center mx-2 mt-3" >' +
           weatherForecastDate +
           '                    </p>                    <div class="px-6 py-4">                        <div  class="mx-auto text-center">' +
           weatherForecastIcon +
@@ -30,6 +38,67 @@ function getMeteorologicalAgency() {
       }
 
       //   element.append(fragment);
+    });
+}
+
+//ヤフー天気より降水量取得
+function getYahooWeather() {
+  //↑宇大陽東の噴水の座標
+  // 35.663613みたいに
+  const willnotRain =
+    ' <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"width="24">  <path d="M0 0h24v24H0z" fill="none" />  <circle cx="12" cy="12" r="10" /></svg>';
+  const willRain =
+    '  <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"  width="24">  <path d="M0 0h24v24H0V0z" fill="none" />  <path      d="M10 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12-8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-4 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm4-4c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-4-4c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-4-4c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" /></svg>';
+
+  const makeArrow =
+    ' <div><svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"    width="24">    <path d="M0 0h24v24H0z" fill="none" />    <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z" /></svg></div>';
+
+  const url =
+    "https://map.yahooapis.jp/weather/V1/place?coordinates=" +
+    longitude +
+    "," +
+    latitude +
+    "&output=json&appid=dj00aiZpPTJuSTJJOWF2anhrZiZzPWNvbnN1bWVyc2VjcmV0Jng9OWQ-";
+  // https://map.yahooapis.jp/weather/V1/place?coordinates=139.732293,35.663613&output=json&appid=dj00aiZpPTJuSTJJOWF2anhrZiZzPWNvbnN1bWVyc2VjcmV0Jng9OWQ-
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      let element = document.getElementById("innerYahooWeather");
+      let fragment = new DocumentFragment();
+      for (let i = 6; i > -1; i--) {
+        // let nameValue = data["Feature"][i]["Name"];
+        let rawRainfallValue =
+          data["Feature"][0]["Property"]["WeatherList"]["Weather"][i][
+            "Rainfall"
+          ];
+        let rawDataValue =
+          data["Feature"][0]["Property"]["WeatherList"]["Weather"][i]["Date"];
+        let weatherIcon = 0;
+        if (rawRainfallValue == 0) {
+          weatherIcon = willnotRain;
+        } else {
+          weatherIcon = willRain;
+        }
+        let outputRainfallValue = rawRainfallValue + "mm/h ";
+        let outputDataValue =
+          rawDataValue.substr(-4, 2) + "時" + rawDataValue.substr(-2) + "分";
+        let arrowIcon = "";
+        if (i != 6) {
+          arrowIcon = makeArrow;
+        }
+        let text =
+          '<div class="w-40 h-20 flex flex-col justify-center px-5"><p class="text-sm text-center">' +
+          outputDataValue +
+          "</p>" +
+          weatherIcon +
+          '<p class="text-sm text-center">' +
+          outputRainfallValue +
+          "</p></div>" +
+          arrowIcon;
+        fragment.append(element.insertAdjacentHTML("afterbegin", text));
+      }
     });
 }
 
@@ -61,102 +130,5 @@ function getTemp() {
       //     "時" +
       //     data.station.min_temp.temp_daily_min_time_minute +
       //     "分";
-    });
-}
-
-getIss();
-// getUtsunomiyaNews();
-const longitude = 139.92874; //経度
-const latitude = 36.54971; //緯度
-
-function getIss() {
-  const url = "http://api.open-notify.org/iss-pass.json?lat=35.691&lon=139.71";
-
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("iss");
-      console.log(data);
-    });
-}
-
-getJapanNews();
-getUtsunomiyaNews();
-
-function getJapanNews() {
-  var url =
-    "https://newsapi.org/v2/top-headlines?country=jp&apiKey=5b81e1255abd463884362f73f015cb9e";
-
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      var element = document.getElementById("jpNews");
-      var fragment = new DocumentFragment();
-      articles = data.articles;
-      var i = 0;
-      for (const article of articles) {
-        jpImageUrl = article[i][urlToImage];
-        jpTitle = article[i][title];
-        jpSource = article[i][source][name];
-        jpDate = article[i][publishedAt];
-        jpArticleLink = article[i][url];
-        var text =
-          '<div class="max-w-md w-full lg:flex">    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"    style="background-image: url(' +
-          jpImageUrl +
-          ')" >    </div>    <div    class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">        <div class="mb-8">            <div class="text-black font-bold text-xl mb-2" >' +
-          jpTitle +
-          '</div>            <p class="text-grey-darker text-base" id="jpArticle">' +
-          jpArticle +
-          '</p>        </div>        <div class="text-sm">            <p class="text-grey-dark ">出典:' +
-          jpSource +
-          '</p>            <p class="text-grey-dark ">日付:' +
-          jpDate +
-          '</p>            <div class="m-3">                <a href="' +
-          jpArticleLink +
-          '"                    class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">                    <span class="mr-2">記事へ飛ぶ</span>                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">                        <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>                    </svg>                </a>            </div>        </div>    </div></div>';
-        fragment.appendChild(element.insertAdjacentHTML("afterbegin", text));
-        i++;
-      }
-
-      element.appendChild(fragment);
-    });
-}
-
-function getUtsunomiyaNews() {
-  var url =
-    "https://newsapi.org/v2/everything?q=宇都宮a&apiKey=5b81e1255abd463884362f73f015cb9e";
-
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      var element = document.getElementById("utsunomiyaNews");
-      var fragment = new DocumentFragment();
-      articles = data.articles;
-      var i = 0;
-      for (const article of articles) {
-        jpImageUrl = article[i][urlToImage];
-        jpTitle = article[i][title];
-        jpSource = article[i][source][name];
-        jpDate = article[i][publishedAt];
-        jpArticleLink = article[i][url];
-        var text =
-          '<div class="max-w-md w-full lg:flex">    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"    style="background-image: url(' +
-          jpImageUrl +
-          ')" >    </div>    <div    class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">        <div class="mb-8">            <div class="text-black font-bold text-xl mb-2" >' +
-          jpTitle +
-          '</div>            <p class="text-grey-darker text-base" id="jpArticle">' +
-          jpArticle +
-          '</p>        </div>        <div class="text-sm">            <p class="text-grey-dark ">出典:' +
-          jpSource +
-          '</p>            <p class="text-grey-dark ">日付:' +
-          jpDate +
-          '</p>            <div class="m-3">                <a href="' +
-          jpArticleLink +
-          '"                    class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">                    <span class="mr-2">記事へ飛ぶ</span>                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">                        <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>                    </svg>                </a>            </div>        </div>    </div></div>';
-        fragment.appendChild(element.insertAdjacentHTML("afterbegin", text));
-        i++;
-      }
-
-      element.appendChild(fragment);
     });
 }

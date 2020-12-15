@@ -8,9 +8,37 @@ function allDo() {
     getMeteorologicalAgency();
     getTemp();
     getYahooWeather();
+    getCOVID();
     getTrainDelay();
     i++;
   }
+}
+
+function getCOVID() {
+  const url = "https://covid19-japan-web-api.now.sh/api/v1/prefectures";
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("covid");
+      console.log(data);
+      // 感染者合計
+      infectTotigiCOVIDall.innerHTML = data[8].cases;
+      infectIbarakiCOVIDall.innerHTML = data[7].cases;
+      infectSaitamaCOVIDall.innerHTML = data[10].cases;
+      infectTokyoCOVIDall.innerHTML = data[12].cases;
+      //死者合計
+      deathAllTotigiCOVIDall.innerHTML = data[8].deaths;
+      deathAllIbarakiCOVIDall.innerHTML = data[7].deaths;
+      deathAllSaitamaCOVIDall.innerHTML = data[10].deaths;
+      deathAllTokyoCOVIDall.innerHTML = data[12].deaths;
+      //JU JN NK TohokuBullet TobuU
+
+      // badallTotigiCOVIDtoday;
+      // deathAllTotigiCOVIDtoday;
+      // hospitalTotigiCOVIDtoday;
+
+      JU.innerHTML = "test";
+    });
 }
 //列車遅延
 function getTrainDelay() {

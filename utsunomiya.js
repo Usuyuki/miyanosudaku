@@ -9,9 +9,107 @@ function allDo() {
     getTemp();
     getYahooWeather();
     getCOVID();
+    getKoyomi();
     getTrainDelay();
     i++;
   }
+}
+function getKoyomi() {
+  const url =
+    "https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("koyomi");
+      console.log(data);
+      var utcSunrise = data.results.sunrise;
+      var jstSunriseHour = Number(utcSunrise.substr(0, 1)) - 3;
+      var jstSunriseMinute = utcSunrise.substr(2, 2);
+      var jstSunriseSecond = utcSunrise.substr(5, 2);
+      sunrise.innerHTML =
+        jstSunriseHour +
+        "時" +
+        jstSunriseMinute +
+        '分<span class="text-xs">' +
+        jstSunriseSecond +
+        "秒</span>";
+      // ---------------------------------
+      var utcnautical_twilight_begin = data.results.nautical_twilight_begin;
+      var jstnautical_twilight_beginHour =
+        Number(utcnautical_twilight_begin.substr(0, 1)) - 3;
+      var jstnautical_twilight_beginMinute = utcnautical_twilight_begin.substr(
+        2,
+        2
+      );
+      var jstnautical_twilight_beginSecond = utcnautical_twilight_begin.substr(
+        5,
+        2
+      );
+      nautical_twilight_begin.innerHTML =
+        jstnautical_twilight_beginHour +
+        "時" +
+        jstnautical_twilight_beginMinute +
+        '分<span class="text-xs">' +
+        jstnautical_twilight_beginSecond +
+        "秒</span>";
+      // ---------------------------------
+      var utccivil_twilight_begin = data.results.civil_twilight_begin;
+      var jstcivil_twilight_beginHour =
+        Number(utccivil_twilight_begin.substr(0, 1)) - 3;
+      var jstcivil_twilight_beginMinute = utccivil_twilight_begin.substr(2, 2);
+      var jstcivil_twilight_beginSecond = utccivil_twilight_begin.substr(5, 2);
+      civil_twilight_begin.innerHTML =
+        jstcivil_twilight_beginHour +
+        "時" +
+        jstcivil_twilight_beginMinute +
+        '分<span class="text-xs">' +
+        jstcivil_twilight_beginSecond +
+        "秒</span>";
+      // ---------------------------------
+      var utccivil_twilight_end = data.results.civil_twilight_end;
+      var jstcivil_twilight_endHour =
+        Number(utccivil_twilight_end.substr(0, 1)) + 9;
+      var jstcivil_twilight_endMinute = utccivil_twilight_end.substr(2, 2);
+      var jstcivil_twilight_endSecond = utccivil_twilight_end.substr(5, 2);
+      civil_twilight_end.innerHTML =
+        jstcivil_twilight_endHour +
+        "時" +
+        jstcivil_twilight_endMinute +
+        '分<span class="text-xs">' +
+        jstcivil_twilight_endSecond +
+        "秒</span>";
+      // ---------------------------------
+      var utcSunset = data.results.sunset;
+      var jstSunsetHour = Number(utcSunset.substr(0, 1)) + 9;
+      var jstSunsetMinute = utcSunset.substr(2, 2);
+      var jstSunsetSecond = utcSunset.substr(5, 2);
+      sunset.innerHTML =
+        jstSunsetHour +
+        "時" +
+        jstSunsetMinute +
+        '分<span class="text-xs">' +
+        jstSunsetSecond +
+        "秒</span>";
+      // ---------------------------------
+      var utcnautical_twilight_end = data.results.nautical_twilight_end;
+      var jstnautical_twilight_endHour =
+        Number(utcnautical_twilight_end.substr(0, 1)) + 9;
+      var jstnautical_twilight_endMinute = utcnautical_twilight_end.substr(
+        2,
+        2
+      );
+      var jstnautical_twilight_endSecond = utcnautical_twilight_end.substr(
+        5,
+        2
+      );
+      nautical_twilight_end.innerHTML =
+        jstnautical_twilight_endHour +
+        "時" +
+        jstnautical_twilight_endMinute +
+        '分<span class="text-xs">' +
+        jstnautical_twilight_endSecond +
+        "秒</span>";
+    });
 }
 
 function getCOVID() {
@@ -19,8 +117,8 @@ function getCOVID() {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log("covid");
-      console.log(data);
+      // console.log("covid");
+      // console.log(data);
       // 感染者合計
       infectTotigiCOVIDall.innerHTML = data[8].cases;
       infectIbarakiCOVIDall.innerHTML = data[7].cases;

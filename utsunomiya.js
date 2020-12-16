@@ -5,6 +5,7 @@ let i = 0;
 function allDo() {
   if (i == 0) {
     console.log("clicked");
+    // test();
     getMeteorologicalAgency();
     getTemp();
     getYahooWeather();
@@ -14,14 +15,24 @@ function allDo() {
     i++;
   }
 }
+function test() {
+  const url =
+    "https://news.google.com/news/rss/headlines/section/geo/utsunomiya";
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("test");
+      console.log(data);
+    });
+}
 function getKoyomi() {
   const url =
     "https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log("koyomi");
-      console.log(data);
+      // console.log("koyomi");
+      // console.log(data);
       var utcSunrise = data.results.sunrise;
       var jstSunriseHour = Number(utcSunrise.substr(0, 1)) - 3;
       var jstSunriseMinute = utcSunrise.substr(2, 2);
@@ -134,8 +145,6 @@ function getCOVID() {
       // badallTotigiCOVIDtoday;
       // deathAllTotigiCOVIDtoday;
       // hospitalTotigiCOVIDtoday;
-
-      JU.innerHTML = "test";
     });
 }
 //列車遅延
@@ -146,8 +155,6 @@ function getTrainDelay() {
     .then((data) => {
       console.log(data);
       //JU JN NK TohokuBullet TobuU
-
-      JU.innerHTML = "test";
     });
 }
 

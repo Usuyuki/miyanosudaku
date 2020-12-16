@@ -8,7 +8,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>みやのすだく</title>
+    <title>みやのすだくβ</title>
     <meta name="description" content="宇都宮に住んでて毎日朝見たいサイトを目指しました。">
 
 
@@ -38,11 +38,11 @@
     <!-- OGP設定 -->
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="みやのすだく-top-" />
+    <meta property="og:title" content="みやのすだくβ-top-" />
     <meta property="og:description" content="宇都宮に住んでて毎日朝見たいサイトを目指しました。" />
     <meta property="og:image" content="https://usuyuki.github.io/miyanosudaku/img/ogbImage.jpg">
     <meta property="og:url" content="https://usuyuki.github.io/miyanosudaku/" />
-    <meta property="og:site_name" content="みやのすだく" />
+    <meta property="og:site_name" content="みやのすだくβ" />
 
     <meta name="twitter:site" content="@usuyuki26" />
 
@@ -52,16 +52,16 @@
 
     <body>
         <header class="border-b-2 ">
-            <h1 class="text-center m-2 text-3xl font-bold mb-3 mx-10 font-sawarabi">みやのすだく</h1>
-            <p class="text-center mx-5">みやのすだく（宮の集く）は宇都宮を訪れる方が<wbr>朝見ると便利なサイトを目指して作りました。</p>
+            <h1 class="text-center m-2 text-3xl font-bold mb-3 mx-10 font-sawarabi">みやのすだくβ</h1>
+            <p class="text-center mx-5">みやのすだくβ（宮の集く）は宇都宮を訪れる方が<wbr>朝見ると便利なサイトを目指して作りました。</p>
         </header>
         <main>
-            <div class="mx-auto text-center">
+            <div class="mx-auto text-center my-5">
                 <button onclick="allDo()" class="px-3 border-blue-800 border-2 bg-white hover:bg-blue-800 hover:text-white text-gray-600 mx-30 py-3 rounded select-none
                 mx-auto text-center font-bold text-lg ">
 
 
-                    全部まとめて取得(少し重いかも)
+                    各種情報取得
                 </button>
             </div>
             <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
@@ -135,7 +135,7 @@
 
                 <p class="text-center text-sm text-gray-600">Source:気象庁</p>
                 <p class="text-center text-sm text-gray-600"><a href="https://jjwd.info/" target="_blank">API :
-                        最新の気象データ（https://www.data.jma.go.jp/obd/stats/data/mdrr/）を基に jjwd.info が加工したデータ</a></p>
+                        jjwd.info</a></p>
             </article>
             <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
                 <h2 class="text-center m-2 text-lg font-bold"><i class="fas fa-sun"></i> 日の出日の入り</h2>
@@ -346,7 +346,7 @@
 
 
                     <h2 class="text-center m-2 text-lg font-bold "><i class="fas fa-house-damage"></i> 災害情報</h2>
-
+                    <p class="text-center">実装したかったけど困難でした……</p>
 
                 </article>
                 <article class=" border-2 border-red-800 ml-10 md:ml-4 mr-10 my-10 px-5 py-5">
@@ -371,7 +371,7 @@
 
             <article class="border-2 border-red-800 mx-10 my-10 px-5 py-5">
                 <h2 class="text-center m-2 text-lg font-bold"><i class="fas fa-satellite"></i> ISSの通過情報</h2>
-
+                <p class="text-center">実装したかったけど困難でした……</p>
             </article>
 
 
@@ -379,10 +379,12 @@
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <article class=" border-2 border-red-800 ml-10 mr-10 md:mr-4 my-10 px-5 py-5 ">
                     <h2 class="text-center m-2 text-lg font-bold ">全国</h2>
+                    <p class="text-center">実装したかったけど困難でした……</p>
                     <div class="flex" id="jpNews"></div>
                 </article>
                 <article class=" border-2 border-red-800 ml-10 md:ml-4 mr-10 my-10 px-5 py-5">
                     <h2 class="text-center m-2 text-lg font-bold ">宇都宮</h2>
+                    <p class="text-center">実装したかったけど困難でした……</p>
                     <div class="flex" id="utsunomiyaNews">
 
                     </div>
@@ -458,11 +460,11 @@
 
                 </article>
                 <article class=" border-2 border-red-800 ml-10 mr-10 md:mr-4 my-10 px-5 py-5 ">
-                    <h2 class="text-center m-2 text-lg font-bold ">aa</h2>
+                    <h2 class="text-center m-2 text-lg font-bold ">準備中</h2>
 
                 </article>
                 <article class=" border-2 border-red-800 ml-10 md:ml-4 mr-10 my-10 px-5 py-5">
-                    <h2 class="text-center m-2 text-lg font-bold ">bb</h2>
+                    <h2 class="text-center m-2 text-lg font-bold ">準備中</h2>
 
 
 
@@ -472,8 +474,33 @@
 
 
         </main>
-        <footer class="border-t-2  text-center mt-8 mb-8">
-            <p>copyright usuyuki2020</p>
+        <footer class="border border-t-2 mt-20 p-5">
+            <p class="text-center mb-3">copyright 2020 usuyuki</p>
+
+            <div class="info flex  mx-auto justify-center flex-wrap">
+                <!-- カードココから -->
+                <a href="https://portfolio.usuyuki.net/">
+                    <div class="flex items-center bg-b rounded bg-white text-gray-700  font-bold px-4 py-3 m-3">
+                        <p><i class="fas fa-user-alt"></i> ポートフォリオ</p>
+                    </div>
+                </a>
+                <!-- カードココまで -->
+                <!-- カードココから -->
+                <a href="https://twitter.com/usuyuki26">
+                    <div class="flex items-center bg-b rounded bg-white text-gray-700  font-bold px-4 py-3 m-3">
+                        <p><i class="fab fa-twitter"></i> Twitter</p>
+                    </div>
+                </a>
+                <!-- カードココまで -->
+                <!-- カードココから -->
+                <a href="https://github.com/Usuyuki">
+                    <div class="flex items-center bg-b rounded bg-white text-gray-700  font-bold px-4 py-3 m-3">
+                        <p><i class="fab fa-github"></i> GitHub</p>
+                    </div>
+                </a>
+                <!-- カードココまで -->
+            </div>
+
         </footer>
 
         <script src="utsunomiya.js"></script>
